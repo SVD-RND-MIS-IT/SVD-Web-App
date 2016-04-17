@@ -131,6 +131,7 @@ function logout(){
 			localStorage.setItem("ucat_name", null);
 			localStorage.setItem("ucat_description", null);
 			localStorage.setItem("ou_recode_added_at", null);
-
-			window.location.href = "http://localhost/SVDWebApp/";
+			
+			var UIbaseURL = localStorage.getItem("UIbaseURL");
+			window.location.href = UIbaseURL;
 };

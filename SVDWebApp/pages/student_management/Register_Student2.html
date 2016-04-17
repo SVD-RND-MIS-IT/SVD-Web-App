@@ -8,6 +8,12 @@
   <link rel="shortcut icon" href="../../resource/images/flag.png">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
+  
+  
+  
+  
+  
   <!-- Bootstrap 3.3.6 -->
   <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
@@ -32,6 +38,11 @@
   <!-- Validation JS -->
     <script src="../../resource/js/lib/jquery.validate.min.js"></script> 
 	<script src="../../resource/js/lib/additional-methods.min.js"></script> 
+	
+  <!-- Wizard JS -->
+	<script src="../../resource/js/lib/jquery.wizard.js"></script>
+	<link href="../../resource/js/lib/jquery.wizard.css" rel="stylesheet">
+
 	
 	<style>
 		.error{
@@ -82,9 +93,14 @@
 				$("#userProfileMiniComponent").load("../common/UserProfileMini.html");
             });
   </script>
+  
+  
+  
+  
+  
 
   <!-- this page controlling JS -->
-  <script src="../../resource/js/user_management/Register_User.js"></script>
+  <script src="../../resource/js/student_management/Register_Student.js"></script>
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -166,58 +182,44 @@
   
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper" style="padding:1%">
-	<div >
-		<!-- general form elements disabled -->
-          <div class="box box-warning">
-            <div class="box-header with-border" align="center">
-              <h3 class="box-title">User Registration Form</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <form role="form" id="userRegistrationForm">
-                <!-- text input -->
-                <div class="form-group">
-                  <label>User Name <span style="color:red">*</span></label>
-                  <input type="text"  class="form-control" placeholder="Enter User Name" id="uname" name="uname">
-                </div>
-				<div class="form-group">
-                  <label>User Full Name <span style="color:red">*</span></label>
-                  <input type="text"  class="form-control" placeholder="Enter User Full Name" id="ufname" name="ufname" >
-                </div>
-				<div class="form-group">
-                  <label>User Email <span style="color:red">*</span></label>
-                  <input type="email" class="form-control" placeholder="Enter Email" id="uemail" name="uemail">
-                </div>
-				<div class="form-group">
-                  <label>User Phone Number</label>
-                  <input type="text" class="form-control" placeholder="Enter Phone Number" id="uphone" name="uphone">
-                </div>
-				<div class="form-group">
-                  <label>User Password <span style="color:red">*</span></label>
-                  <input type="password" class="form-control" placeholder="Enter User Password" id="upass" name="upass">
-                </div>
-				<div class="form-group">
-                  <label>Re Type User Password <span style="color:red">*</span></label>
-                  <input type="password" class="form-control" placeholder="Re Type User Password" id="upassrep" name="upassrep">
-                </div>
-				<div class="form-group">
-                  <label>User Authorisation level <span style="color:red">Be Careful on selecting</span></label>
-                  <select class="form-control" id="ugroup">
-                    
-                  </select>
-                </div>
-				<div class="box-footer">
-					<button type="submit" class="btn btn-primary" ">Submit</button>
-				</div>
-                
-              </form>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+	<div class="container-fluid">
+		<div data-wizard-init>
+		  <ul class="steps">
+			<li data-step="1">Details</li>
+			<li data-step="2">Address</li>
+			<li data-step="3">Template</li>
+			<li data-step="4">Delivery</li>
+			
+		  </ul>
+		  <div class="steps-content">
+			<div data-step="1">
+			  <h4>Details</h4>
+			  <p>
+				Sed ac nulla nec turpis pharetra rutrum et at mauris. Phasellus eleifend molestie est, eu lacinia nisi gravida non. Nullam sit amet pulvinar dolor. Etiam id fermentum erat. Proin quis rutrum sapien.
+			  </p>
+			</div>
+			<div data-step="2">
+			  <h4>Address</h4>
+			  <p>
+			  Sed eleifend lobortis dolor, vel hendrerit neque interdum eget. Proin ac hendrerit diam. Mauris tristique libero vel condimentum sodales. Ut sed augue euismod, tincidunt nunc at, rutrum risus. Cras consequat purus sit amet augue varius; vitae ornare erat commodo. In hac habitasse platea dictumst. Nunc lobortis auctor ligula dictum scelerisque. Integer sed justo rutrum, rutrum tortor nec, feugiat nulla?
+			  </p>
+			</div>
+			<div data-step="3">
+			  <h4>Template</h4>
+			  <p>
+				Donec pharetra vel felis facilisis aliquam! Nunc consequat, lorem a scelerisque porttitor, orci neque mattis velit; at rhoncus quam felis a lorem. Cras dictum augue elit, non tempus leo pharetra nec! Nunc iaculis ex quis ante elementum varius. Curabitur a ultrices risus. Etiam elementum magna a eros maximus ornare. Aenean lectus dui, venenatis non tincidunt sed, dignissim at turpis? Vestibulum varius tempor turpis eget laoreet. Phasellus hendrerit purus vel arcu dapibus ullamcorper? Aliquam et nunc sagittis, semper orci eu, eleifend turpis! Integer eget aliquet libero. Vestibulum rutrum, ipsum nec bibendum sagittis, leo libero tristique erat, ut euismod lorem tortor quis lorem. Vivamus et tellus eu purus tempor posuere.
+			  </p>
+			</div>
+			<div data-step="4">
+			  <h4>Images</h4>
+			  <p>
+				Cras nec nisl a quam scelerisque convallis! Morbi tempus dictum sapien. Mauris eget dictum augue, non consequat urna. Suspendisse dictum sapien imperdiet, tincidunt libero ac, pulvinar est. Curabitur sagittis eget orci ac consectetur! Sed ut ante ipsum. Curabitur vel consequat metus; sit amet iaculis lorem? Aliquam tincidunt diam sit amet odio suscipit mattis. In non lobortis odio. Duis sodales volutpat efficitur. Maecenas diam diam, pulvinar a erat sit amet, aliquet pharetra lectus. Ut ultricies nibh vitae egestas dapibus. Integer quis dignissim arcu, et pharetra elit. Integer scelerisque enim quis molestie ullamcorper. Proin pretium et justo non cursus. Integer feugiat volutpat sapien, ut consequat libero rutrum in.
+			  </p>
+			</div>
+		  </div>
+		</div>
+    </div><!--/.fluid-container-->
 
-	</div>
-	
   </div>
   <!-- /.content-wrapper -->
   
@@ -244,6 +246,64 @@
 <script src="../../dist/js/demo.js"></script>
 
 
+
+
+
+<!-- jQuery 2.2.0 -->
+<script src="../../plugins/jQuery/jQuery-2.2.0.min.js"></script>
+
+<!-- Select2 -->
+<script src="../../plugins/select2/select2.full.min.js"></script>
+<!-- InputMask -->
+<script src="../../plugins/input-mask/jquery.inputmask.js"></script>
+<script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+<script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
+<!-- Page script -->
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $(".select2").select2();
+
+    //Datemask dd/mm/yyyy
+    $("#datemask").inputmask("dd/mm/yyyy", {"placeholder": "dd/mm/yyyy"});
+
+    //Money Euro
+    $("[data-mask]").inputmask();
+
+   
+  });
+</script>
+
+
+<script type="text/javascript">
+$(window).load(function(){	
+	$(".done").click(function(){
+		var this_li_ind = $(this).parent().parent("li").index();
+		if($('.payment-wizard li').hasClass("jump-here")){
+			$(this).parent().parent("li").removeClass("active").addClass("completed");
+			$(this).parent(".wizard-content").slideUp();
+			$('.payment-wizard li.jump-here').removeClass("jump-here");
+		}else{
+			$(this).parent().parent("li").removeClass("active").addClass("completed");
+			$(this).parent(".wizard-content").slideUp();
+			$(this).parent().parent("li").next("li:not('.completed')").addClass('active').children('.wizard-content').slideDown();
+		}
+	});
+	
+	$('.payment-wizard li .wizard-heading').click(function(){
+		if($(this).parent().hasClass('completed')){
+			var this_li_ind = $(this).parent("li").index();		
+			var li_ind = $('.payment-wizard li.active').index();
+			if(this_li_ind < li_ind){
+				$('.payment-wizard li.active').addClass("jump-here");
+			}
+			$(this).parent().addClass('active').removeClass('completed');
+			$(this).siblings('.wizard-content').slideDown();
+		}
+	});
+})
+</script>
 
 
 </body>

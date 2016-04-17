@@ -1,5 +1,6 @@
 $(document).ready(function() {
 	localStorage.setItem("baseURL", "http://localhost/svdmisservice/service/");
+	localStorage.setItem("UIbaseURL", "http://localhost/SVDWebApp/");
 	var baseURL = localStorage.getItem("baseURL");
 	/*var sessionid = localStorage.getItem("usr_name");
 	if(sessionid!=null){

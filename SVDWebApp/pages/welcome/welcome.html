@@ -37,14 +37,30 @@
 				var userType = localStorage.getItem("ucat_name");
 				if(userType=="Super User"){
 					$("#leftMenueOfSVD").load("../common/leftMenue.html");
-				}else if(userType=="R&D Officer"){
+				}else if(userType=="Admin"){
 					$("#leftMenueOfSVD").load("../common/leftMenue1.html");
-				}else if(userType=="Thurunusaviya In-charge"){
+				}else if(userType=="Accountant"){
 					$("#leftMenueOfSVD").load("../common/leftMenue2.html");
-				}else if(userType=="Parent"){
+				}else if(userType=="Exam in-charge"){
 					$("#leftMenueOfSVD").load("../common/leftMenue3.html");
-				}else{
+				}else if(userType=="Librarian"){
 					$("#leftMenueOfSVD").load("../common/leftMenue4.html");
+				}else if(userType=="Prefect In-charge"){
+					$("#leftMenueOfSVD").load("../common/leftMenue5.html");
+				}else if(userType=="Thurunusaviya In-charge"){
+					$("#leftMenueOfSVD").load("../common/leftMenue6.html");
+				}else if(userType=="Vidusarana In-charge"){
+					$("#leftMenueOfSVD").load("../common/leftMenue7.html");
+				}else if(userType=="Parent"){
+					$("#leftMenueOfSVD").load("../common/leftMenue8.html");
+				}else if(userType=="Teacher"){
+					$("#leftMenueOfSVD").load("../common/leftMenue9.html");
+				}else if(userType=="Student"){
+					$("#leftMenueOfSVD").load("../common/leftMenue10.html");
+				}else if(userType=="R&D Officer"){
+					$("#leftMenueOfSVD").load("../common/leftMenue11.html");
+				}else{
+					$("#leftMenueOfSVD").load("../common/leftMenue12.html");
 				}
 				
 				
@@ -82,11 +98,11 @@
 
   <header class="main-header">
     <!-- Logo -->
-    <a href="../../index2.html" class="logo">
+    <a href="../welcome/welcome.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>SRM</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg fm-derana"><b>isrs jcsr[dK f;dr;=re mshi</b></span>
+      <span class="logo-lg"><b>SVD | RND | MIS</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -140,10 +156,12 @@
   
   
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="padding:1%">
-	<div align="center">
-		<h2 align="center" id="tool_tip_1" title="">Siri Vajiragnana Dhamma School Student Information Management System</h2>
-		<img src= "../../resource/images/flag.png" align="center" width="60%" id="tool_tip_2" title="ffffff"/>
+  <div class="content-wrapper" style="padding:1%; background-image: url(../../resource/images/bg5.jpg);background-size:cover; " >
+	<div align="center" >
+		<h1 align="center"  class="fm-derana" style="font-size: 450%; color: yellow; text-shadow:-2px -2px 0 red, 2px -2px 0 red, -2px 2px 0 red, 2px 2px 0 red;  "><strong>iajd.;ka - wdhqfndajka</strong></h1>
+		<h2 align="center"  class="fm-derana" style="font-size: 300%;color: white; text-shadow:-2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;  ">isrs úÿrekeK isiq ore f;dr;=re mshi</h2>
+
+		<img src= "../../resource/images/flag.png" align="center" width="60%" />
 	</div>
 	
   </div>

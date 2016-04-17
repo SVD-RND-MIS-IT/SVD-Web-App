@@ -23,22 +23,13 @@
   <link rel="stylesheet" href="../../resource/css/svd-mis-main.css">
   
   <!-- jQuery 2.2.0 -->
-  <script src="../../plugins/jQuery/jQuery-2.2.0.min.js"></script> 
+  <script src="../../plugins/jQuery/jQuery-2.2.0.min.js"></script>
   
   <!-- Sweet Alerts -->
     <script src="../../resource/js/lib/sweetalert.min.js"></script> 
 	<link rel="stylesheet" type="text/css" href="../../resource/js/lib/sweetalert.css">
 
-  <!-- Validation JS -->
-    <script src="../../resource/js/lib/jquery.validate.min.js"></script> 
-	<script src="../../resource/js/lib/additional-methods.min.js"></script> 
-	
-	<style>
-		.error{
-			color: red;
-		}
-	
-	</style>
+  
   
   <script>
             $(function () {
@@ -75,6 +66,7 @@
 				
 				
 				
+				
 				$("#mainFooterOfSVD").load("../common/footer.html");
 				$("#adminNotificationComponent").load("../common/AdminNotification.html");
 				$("#systemNotificationCompnent").load("../common/SystemNotification.html");
@@ -84,7 +76,7 @@
   </script>
 
   <!-- this page controlling JS -->
-  <script src="../../resource/js/user_management/Register_User.js"></script>
+  <script src="../../resource/js/welcome/welcome.js"></script>
   
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -111,7 +103,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><b>SRM</b></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg "><b>SVD | RND | MIS</b></span>
+      <span class="logo-lg"><b>SVD | RND | MIS</b></span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -165,57 +157,12 @@
   
   
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper" style="padding:1%">
-	<div >
-		<!-- general form elements disabled -->
-          <div class="box box-warning">
-            <div class="box-header with-border" align="center">
-              <h3 class="box-title">User Registration Form</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <form role="form" id="userRegistrationForm">
-                <!-- text input -->
-                <div class="form-group">
-                  <label>User Name <span style="color:red">*</span></label>
-                  <input type="text"  class="form-control" placeholder="Enter User Name" id="uname" name="uname">
-                </div>
-				<div class="form-group">
-                  <label>User Full Name <span style="color:red">*</span></label>
-                  <input type="text"  class="form-control" placeholder="Enter User Full Name" id="ufname" name="ufname" >
-                </div>
-				<div class="form-group">
-                  <label>User Email <span style="color:red">*</span></label>
-                  <input type="email" class="form-control" placeholder="Enter Email" id="uemail" name="uemail">
-                </div>
-				<div class="form-group">
-                  <label>User Phone Number</label>
-                  <input type="text" class="form-control" placeholder="Enter Phone Number" id="uphone" name="uphone">
-                </div>
-				<div class="form-group">
-                  <label>User Password <span style="color:red">*</span></label>
-                  <input type="password" class="form-control" placeholder="Enter User Password" id="upass" name="upass">
-                </div>
-				<div class="form-group">
-                  <label>Re Type User Password <span style="color:red">*</span></label>
-                  <input type="password" class="form-control" placeholder="Re Type User Password" id="upassrep" name="upassrep">
-                </div>
-				<div class="form-group">
-                  <label>User Authorisation level <span style="color:red">Be Careful on selecting</span></label>
-                  <select class="form-control" id="ugroup">
-                    
-                  </select>
-                </div>
-				<div class="box-footer">
-					<button type="submit" class="btn btn-primary" ">Submit</button>
-				</div>
-                
-              </form>
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
+  <div class="content-wrapper" style="padding:1%; background-image: url(../../resource/images/bg6.jpg);background-size:cover; " >
+	<div align="center" >
+		<h1 align="center"  class="fm-derana" style="font-size: 450%; color: yellow; text-shadow:-2px -2px 0 red, 2px -2px 0 red, -2px 2px 0 red, 2px 2px 0 red;  "><strong>iajd.;ka - wdhqfndajka</strong></h1>
+		<h2 align="center"  class="fm-derana" style="font-size: 300%;color: white; text-shadow:-2px -2px 0 black, 2px -2px 0 black, -2px 2px 0 black, 2px 2px 0 black;  ">isrs úÿrekeK isiq ore f;dr;=re mshi</h2>
 
+		<img src= "../../resource/images/404-1.png" align="center" width="60%" />
 	</div>
 	
   </div>
@@ -243,6 +190,8 @@
 <!-- SVD for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 
+ <link href="http://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css" rel="stylesheet">
+ <script src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
 
 
