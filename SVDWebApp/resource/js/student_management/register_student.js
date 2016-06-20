@@ -12,6 +12,10 @@ $(document).ready(function () {
 	var guardian_id = null;
 	var sibling_id = null;
 	
+	var mot_para1 = 'null';
+	var far_para1 = 'null';
+	var gar_para1 = 'null';
+	
 
 
     if (sessionid == null) {
@@ -38,9 +42,9 @@ $(document).ready(function () {
         },
         success: function (resp) {
             for (i = 0; i < resp.occupation_type.length; i++) {
-                $("#mot_para7").append("<option value=\"" + resp.occupation_type[i].occ_type_id + "\" >" + resp.occupation_type[i].occ_type_name + "</option>");
-                $("#far_para7").append("<option value=\"" + resp.occupation_type[i].occ_type_id + "\" >" + resp.occupation_type[i].occ_type_name + "</option>");
-                $("#gar_para7").append("<option value=\"" + resp.occupation_type[i].occ_type_id + "\" >" + resp.occupation_type[i].occ_type_name + "</option>");
+                $("#mot_para7").append("<option value=\"" + resp.occupation_type[i].occ_type_id + "\" >" + resp.occupation_type[i].occ_type_name +" "+resp.occupation_type[i].occ_type_description + "</option>");
+                $("#far_para7").append("<option value=\"" + resp.occupation_type[i].occ_type_id + "\" >" + resp.occupation_type[i].occ_type_name +" "+resp.occupation_type[i].occ_type_description + "</option>");
+                $("#gar_para7").append("<option value=\"" + resp.occupation_type[i].occ_type_id + "\" >" + resp.occupation_type[i].occ_type_name +" "+resp.occupation_type[i].occ_type_description + "</option>");
             }
         },
         error: function (e) {
@@ -59,7 +63,7 @@ $(document).ready(function () {
         },
         success: function (resp) {
             for (i = 0; i < resp.schools.length; i++) {
-                $("#stu_para11").append("<option value=\"" + resp.schools[i].sch_id + "\" >" + resp.schools[i].sch_name + "</option>");
+                $("#stu_para11").append("<option value=\"" + resp.schools[i].sch_id + "\" >" + resp.schools[i].sch_name +" - "+ resp.schools[i].sch_situated_in+ "</option>");
             }
         },
         error: function (e) {
@@ -123,7 +127,7 @@ $(document).ready(function () {
 				success: function (resp) {
 					var siblingid = resp.student.stu_id;
 					if(siblingid == null || siblingid == ""){
-						sweetAlert("Oops...", "Its is invalid sibling registration id!", "error");
+						sweetAlert("Oops...", "This is invalid Sibling Admission Number!", "error");
 					}else{
 						//hide gardian section
 						$("#gardiandetails").hide();
@@ -158,7 +162,7 @@ $(document).ready(function () {
 			
 		
 		}else if (siblingid.length > 6){
-			sweetAlert("Oops...", "It has more caractors....", "error");
+			sweetAlert("Oops...", "This has more characters....", "error");
 			$("#gardiandetails").show();
 			isValidSibling = false;
 			sibling_id = null;
@@ -209,7 +213,7 @@ $(document).ready(function () {
 						isValidAddmissionNumber = true;
 					}else{
 						isValidAddmissionNumber = false;
-						sweetAlert("ID Is ALredy Exsist", "ID Is Alredy Exsist", "error");
+						sweetAlert("Oops...", "This Admission Number already exists", "error");
 					}
 				},
 				error: function (e) {
@@ -446,60 +450,60 @@ $(document).ready(function () {
         messages: {
 			//student validations
             stu_para1: {
-                required: "addmision number required",
-                minlength: "Its less than six charactors",
-				maxlength: "Its more than six charactors",
-				number: "It can only contain numbers"
+                required: "Admission Number required",
+                minlength: "You entered less than six digits",
+				maxlength: "You entered more than six digits",
+				number: "This can only contain numbers"
             },
 			stu_para1_2: {
-                required: "addmision year required",
-                minlength: "Its less than foure charactors",
-				maxlength: "Its more than foure charactors",
-				number: "It can only contain numbers",
-				range: "It should be with in 1970-2050"
+                required: "Admission Year required",
+                minlength: "You entered less than four digits",
+				maxlength: "You entered more than four digits",
+				number: "This can only contain numbers",
+				range: "The year should be within the range 1970-2050"
             },
             stu_para2: {
-                required: "Student full name is year required",
-                minlength: "It should contain minimam 4 letters",
-				letters_and_space_only: "It can only containing letters",
-				maxlength:'can only contain 500 charactors'
+                required: "Student Full Name is required",
+                minlength: "This should contain a minimum of four letters",
+				letters_and_space_only: "This can only contain letters",
+				maxlength:'This can only contain 500 characters'
 				
             },
             stu_para3: {
-                required: "It is requird",
-                minlength: "it shoud have minimam 4 letters",
-				letters_and_space_fulstop_only: "Shoud be a valid name",
-				maxlength:'can only contain 500 charactors'
+                required: "Name with initials is required",
+                minlength: "This should have a minimum of four letters",
+				letters_and_space_fulstop_only: "This should be a valid name",
+				maxlength:'This can only contain 500 characters'
             },
             stu_para5: {
-                required: "Birthday is requird"
+                required: "Date of birth is required"
             },
 			stu_para13: {
-                minlength: "Its less than six charactors",
-				maxlength: "Its more than six charactors",
-				number: "It can only contain numbers"
+                minlength: "You entered less than six characters",
+				maxlength: "You entered more than six characters",
+				number: "This can only contain numbers"
             },
 			stu_para8: {
-               required: "Address is requird",
-               minlength: "It should have min 5 letters",
-			   maxlength:'can only contain 500 charactors'
+               required: "Address is required",
+               minlength: "This should have a minimum of five letters",
+			   maxlength:'This can only contain 500 characters'
             },
 			stu_para6: {
-                phone_numbers: "Should be a valid phone number"
+                phone_numbers: "This should be a valid phone number"
             },
             stu_para7: {
-                phone_numbers: "Should be a valid phone number"
+                phone_numbers: "This should be a valid phone number"
             },
 			stu_para10: {
-                number: "shoul be a number",
-				range: "shoul be within 0-200"
+                number: "This should be a number",
+				range: "This should be within the range 0-200"
             },
             
 			stu_para14: {
-                minlength: "Its less than foure charactors",
-				maxlength: "Its more than foure charactors",
-				number: "It can only contain numbers",
-				range: "It should be with in 1970-2050"
+                minlength: "You entered less than four characters",
+				maxlength: "You entered more than four characters",
+				number: "This should only contain numbers",
+				range: "This should be within the range 1970-2050"
             },
 			
 			
@@ -507,139 +511,139 @@ $(document).ready(function () {
 			
 			//mothers validations
 			mot_para1: {
-                minlength: "Should have 4 charactors minimamly",
-				letters_and_space_fulstop_only: "only can contain letters",
-				maxlength:"can Only contain 500 charactors"
+                minlength: "This should contain a minimum of four characters",
+				letters_and_space_fulstop_only: "This can only contain letters",
+				maxlength:"This can only contain 500 characters"
 				
             },
 			mot_para2: {
-                phone_numbers: "not a valid phone number"
+                phone_numbers: "You entered an invalid Phone Number"
             },
 			mot_para4: {
-                email: "not a valid email"
+                email: "You eneterd an invalid Email"
             },
 			mot_para5: {
-                nic_numbers: "not a valid NIC"
+                nic_numbers: "You entered an invalid NIC"
             },
 			mot_para9: {
-                phone_numbers: "not a valid phone number"
+                phone_numbers: "You entered an invalid Phone Number"
             },
 			mot_para10: {
-                minlength: "it should have more caractoors to fill six numbers",
-				maxlength: "it should have less caractoors to fill six numbers",
-				number: "it should have only numbers"
+                minlength: "You entered less than six digits",
+				maxlength: "You entered more than six digits",
+				number: "This should contain only numbers"
             },
 			
 			
 			
 			//Fathers validations
 			far_para1: {
-                minlength: "Should have 4 charactors minimamly",
-				letters_and_space_fulstop_only: "only can contain letters",
-				maxlength:"can Only contain 500 charactors"
+                minlength: "This should have a minimum of four characters",
+				letters_and_space_fulstop_only: "This can only contain letters",
+				maxlength:"This can only contain 500 characters"
 				
             },
 			far_para2: {
-                phone_numbers: "not a valid phone number"
+                phone_numbers: "You entered an invalid Phone Number"
             },
 			far_para4: {
-                email: "not a valid email"
+                email: "You eneterd an invalid Email"
             },
 			far_para5: {
-                nic_numbers: "not a valid NIC"
+                nic_numbers: "You entered an invalid NIC"
             },
 			far_para9: {
-                phone_numbers: "not a valid phone number"
+                phone_numbers: "You entered an invalid Phone Number"
             },
 			far_para10: {
-                minlength: "it should have more caractoors to fill six numbers",
-				maxlength: "it should have less caractoors to fill six numbers",
-				number: "it should have only numbers"
+                minlength: "You entered less than six digits",
+				maxlength: "You entered more than six digits",
+				number: "This should contain only numbers"
             },
 			
 			
 			
 			//gardian validations
 			gar_para1: {
-                minlength: "Should have 4 charactors minimamly",
-				letters_and_space_fulstop_only: "only can contain letters",
-				maxlength:"can Only contain 500 charactors"
+                minlength: "This should have a minimum of four characters",
+				letters_and_space_fulstop_only: "This can only contain letters",
+				maxlength:"This can only contain 500 characters"
 				
             },
 			gar_para2: {
-                phone_numbers: "not a valid phone number"
+                phone_numbers: "You entered an invalid Phone Number"
             },
 			gar_para4: {
-                email: "not a valid email"
+                email: "You eneterd an invalid Email"
             },
 			gar_para5: {
-                nic_numbers: "not a valid NIC"
+                nic_numbers: "You entered an invalid NIC"
             },
 			gar_para9: {
-                phone_numbers: "not a valid phone number"
+                phone_numbers: "You entered an invalid Phone Number"
             },
 			gar_para10: {
-                minlength: "it should have more caractoors to fill six numbers",
-				maxlength: "it should have less caractoors to fill six numbers",
-				number: "it should have only numbers"
+                minlength: "You entered less than six digits",
+				maxlength: "You entered more than six digits",
+				number: "This should contain only numbers"
             },
 			
 			
 			
 			//only contain max length
 			stu_para9: {
-				maxlength:"can Only contain 45 charactors"
+				maxlength:"This can only contain 45 characters"
             },
 			
 			
 			mot_para3: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			mot_para4: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			mot_para6: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			mot_para8: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			mot_para13: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
             
 			
 			far_para3: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			far_para4: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			far_para6: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			far_para8: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			far_para13: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			
 			
 			gar_para3: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			gar_para4: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			gar_para6: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			gar_para8: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             },
 			gar_para13: {
-				maxlength:"can Only contain 500 charactors"
+				maxlength:"This can only contain 500 characters"
             }
 			
             
@@ -672,6 +676,8 @@ $(document).ready(function () {
 				var stu_para1_2 = $('#stu_para1_2').val();
 				
 				if(! isValidSibling){
+					
+					
 					var mot_para1 = $('#mot_para1').val(); 
 					var mot_para2 = $('#mot_para2').val(); 
 					var mot_para3 = $('#mot_para3').val(); 
@@ -837,7 +843,7 @@ $(document).ready(function () {
 																					});
 																			}
 																			
-																		sweetAlert("success...", "Successfully student registration done", "success");
+																		sweetAlert("Success!", "Student Registration Successful", "success");
 																		$( '#studentRegistrationForm' ).each(function(){
 																			this.reset();
 																		});	
@@ -988,7 +994,7 @@ $(document).ready(function () {
 													});
 											}
 											
-											sweetAlert("success...", "Successfully student registration done", "success");
+											sweetAlert("Success!", "Student Registration Successful", "success");
 											$( '#studentRegistrationForm' ).each(function(){
 												this.reset();
 											});
@@ -1034,7 +1040,7 @@ $(document).ready(function () {
 
 				
 			}else{
-				sweetAlert("Cant submit form", "Admission Number is not valid", "error");
+				sweetAlert("Oops...", "Admission Number is invalid", "error");
 			}
 			
 			

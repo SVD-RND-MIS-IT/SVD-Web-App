@@ -43,38 +43,9 @@
   <script>
             $(function () {
 				
-				var userType = localStorage.getItem("ucat_name");
-				if(userType=="Super User"){
-					$("#leftMenueOfSVD").load("../common/leftMenue.html");
-				}else if(userType=="Admin"){
-					$("#leftMenueOfSVD").load("../common/leftMenue1.html");
-				}else if(userType=="Accountant"){
-					$("#leftMenueOfSVD").load("../common/leftMenue2.html");
-				}else if(userType=="Exam in-charge"){
-					$("#leftMenueOfSVD").load("../common/leftMenue3.html");
-				}else if(userType=="Librarian"){
-					$("#leftMenueOfSVD").load("../common/leftMenue4.html");
-				}else if(userType=="Prefect In-charge"){
-					$("#leftMenueOfSVD").load("../common/leftMenue5.html");
-				}else if(userType=="Thurunusaviya In-charge"){
-					$("#leftMenueOfSVD").load("../common/leftMenue6.html");
-				}else if(userType=="Vidusarana In-charge"){
-					$("#leftMenueOfSVD").load("../common/leftMenue7.html");
-				}else if(userType=="Parent"){
-					$("#leftMenueOfSVD").load("../common/leftMenue8.html");
-				}else if(userType=="Teacher"){
-					$("#leftMenueOfSVD").load("../common/leftMenue9.html");
-				}else if(userType=="Student"){
-					$("#leftMenueOfSVD").load("../common/leftMenue10.html");
-				}else if(userType=="R&D Officer"){
-					$("#leftMenueOfSVD").load("../common/leftMenue11.html");
-				}else{
-					$("#leftMenueOfSVD").load("../common/leftMenue12.html");
-				}
-				
-				
-				
-				
+				var userType = localStorage.getItem("menueName");
+                
+                $("#leftMenueOfSVD").load(userType);
 				$("#mainFooterOfSVD").load("../common/footer.html");
 				$("#adminNotificationComponent").load("../common/AdminNotification.html");
 				$("#systemNotificationCompnent").load("../common/SystemNotification.html");
@@ -186,11 +157,11 @@
                 </div>
 				<div class="form-group">
                   <label>User Email <span style="color:red">*</span></label>
-                  <input type="email" class="form-control" placeholder="Enter Email" id="uemail" name="uemail">
+                  <input type="email" class="form-control" placeholder="Enter User Email" id="uemail" name="uemail">
                 </div>
 				<div class="form-group">
                   <label>User Phone Number</label>
-                  <input type="text" class="form-control" placeholder="Enter Phone Number" id="uphone" name="uphone">
+                  <input type="text" class="form-control" placeholder="Enter User Phone Number" id="uphone" name="uphone">
                 </div>
 				<div class="form-group">
                   <label>User Password <span style="color:red">*</span></label>
@@ -201,13 +172,13 @@
                   <input type="password" class="form-control" placeholder="Re Type User Password" id="upassrep" name="upassrep">
                 </div>
 				<div class="form-group">
-                  <label>User Authorisation level <span style="color:red">Be Careful on selecting</span></label>
+                  <label>User Authorisation level <span style="color:red">Be careful when selecting!</span></label>
                   <select class="form-control" id="ugroup">
                     
                   </select>
                 </div>
 				<div class="box-footer">
-					<button type="submit" class="btn btn-primary" ">Submit</button>
+					<button type="submit" class="btn btn-primary" >Submit</button>
 				</div>
                 
               </form>

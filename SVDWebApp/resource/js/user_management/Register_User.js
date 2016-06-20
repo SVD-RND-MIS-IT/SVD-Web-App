@@ -4,7 +4,7 @@ $(document).ready(function() {
 	var baseURL = localStorage.getItem("baseURL");
 	
 	if(sessionid == null){
-		swal({   title: "You are not logged in",   text: "Pleace loggin to the system.",   timer: 3000,   showConfirmButton: false });
+		swal({   title: "You are not logged in",   text: "Please login to the System.",   timer: 3000,   showConfirmButton: false });
 		setTimeout(function(){     window.location.href = "../../";   }, 3000);
 	}
 
@@ -55,31 +55,31 @@ $(document).ready(function() {
 	  },
 	  messages: {
 		uname: {
-		  required: "It is required to add user name",
-		  minlength: "Its too short. It should have minimum 4 charactors"
+		  required: "User Name is required",
+		  minlength: "User Name is too short. It should have a minimum of four characters"
 		},
 		ufname: {
-		  required: "It is required to add user full name",
-		  minlength: "Its too short. It should have minimum 4 charactors"
+		  required: "User Full Name is required",
+		  minlength: "Full Name is too short. It should have a minimum of four characters"
 		},
 		uemail: {
-		  required: "It is required to add user email",
-		  email: "It is not an email address"
+		  required: "User Email is required",
+		  email: "You entered an invalid Email Address"
 		},
 		uphone: {
-		  minlength: "It should have 10 numbers for phone number",
-		  maxlength: "It should have 10 numbers for phone number"
+		  minlength: "Phone number should contain only ten digits",
+		  maxlength: "Phone number should contain only ten digits"
 		},
 		upass: {
-		  required: "It is required to add user password",
-		  minlength: "It should hava minimum 4 charactors",
-		  maxlength: "It should hava maximum 16 charactors"
+		  required: "User Password required",
+		  minlength: "This should have a minimum of four characters",
+		  maxlength: "This should have a minimum of sixteen characters"
 		},
 		upassrep: {
-		  required: "It is required to retype user password",
-		  minlength: "It should hava minimum 4 charactors",
-		  maxlength: "It should hava maximum 16 charactors",
-		  equalTo: "It should equal to your password"
+		  required: "It is required to re-type User Password",
+		  minlength: "This should have a minimum of four characters",
+		  maxlength: "This should have a minimum of sixteen characters",
+		  equalTo: "Passwords do not match"
 		}
 	  },
 	  submitHandler: function(form) {
@@ -101,7 +101,7 @@ $(document).ready(function() {
 			   beforeSend: function(xhr){xhr.setRequestHeader('Authorization', usr_api_key);},
 			   success: function(resp){
 					if(resp.message == "You are successfully registered"){
-						sweetAlert("Success", "User is successfully registered", "success" );
+						sweetAlert("Success!", "User is successfully registered!", "success" );
 						$( '#userRegistrationForm' ).each(function(){
 							this.reset();
 						});

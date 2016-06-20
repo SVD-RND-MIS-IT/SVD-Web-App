@@ -50,38 +50,9 @@
         <script>
             $(function () {
 
-                var userType = localStorage.getItem("ucat_name");
-                if (userType == "Super User") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue.html");
-                } else if (userType == "Admin") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue1.html");
-                } else if (userType == "Accountant") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue2.html");
-                } else if (userType == "Exam in-charge") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue3.html");
-                } else if (userType == "Librarian") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue4.html");
-                } else if (userType == "Prefect In-charge") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue5.html");
-                } else if (userType == "Thurunusaviya In-charge") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue6.html");
-                } else if (userType == "Vidusarana In-charge") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue7.html");
-                } else if (userType == "Parent") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue8.html");
-                } else if (userType == "Teacher") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue9.html");
-                } else if (userType == "Student") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue10.html");
-                } else if (userType == "R&D Officer") {
-                    $("#leftMenueOfSVD").load("../common/leftMenue11.html");
-                } else {
-                    $("#leftMenueOfSVD").load("../common/leftMenue12.html");
-                }
-
-
-
-
+                var userType = localStorage.getItem("menueName");
+                
+                $("#leftMenueOfSVD").load(userType);
                 $("#mainFooterOfSVD").load("../common/footer.html");
                 $("#adminNotificationComponent").load("../common/AdminNotification.html");
                 $("#systemNotificationCompnent").load("../common/SystemNotification.html");
@@ -188,7 +159,11 @@
                             <!-- text input -->
                             <div class="form-group">
                                 <label>Student Admission Number <span style="color:red">*</span></label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="stu_para1" name="stu_para1" >
+                                <input type="text"  class="form-control" placeholder="Enter Admission Number  eg:123456" id="stu_para1" name="stu_para1" >
+                            </div>
+							<div class="form-group">
+                                <label>Student Admission Year <span style="color:red">*</span></label>
+                                <input type="text"  class="form-control" placeholder="Enter the Year of Admission" id="stu_para1_2" name="stu_para1_2" >
                             </div>
                             <div class="form-group">
                                 <label>Admission Class<span style="color:red">*</span></label>
@@ -196,17 +171,14 @@
 
                                 </select>
                             </div>
-							<div class="form-group">
-                                <label>Student Admission year <span style="color:red">*</span></label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="stu_para1_2" name="stu_para1_2" >
-                            </div>
+							
                             <div class="form-group">
                                 <label>Student Full Name<span style="color:red">*</span></label>
-                                <input type="text"   class="form-control" placeholder="Enter User Full Name" id="stu_para2" name="stu_para2" >
+                                <input type="text"   class="form-control" placeholder="Enter Student's Full Name" id="stu_para2" name="stu_para2" >
                             </div>
                             <div class="form-group">
                                 <label>Student Name with Initials<span style="color:red">*</span></label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="stu_para3" name="stu_para3">
+                                <input type="text"  class="form-control" placeholder="Enter Student's Name with Initials" id="stu_para3" name="stu_para3">
                             </div>
 
                             <!-- radio -->
@@ -240,32 +212,34 @@
                             <!-- /.form group -->
 							
 							<div class="form-group">
-                                <label>Sibling ID (only one)</label>
-                                <input type="text" class="form-control" placeholder="Re Type User Password" id="stu_para13" name="stu_para13" >
+                                <label>Sibling Admission Number (Only One)</label>
+                                <input type="text" class="form-control" placeholder="Enter Admission Number of ONLY ONE sibling" id="stu_para13" name="stu_para13" >
                             </div>
 
 							<div class="form-group">
                                 <label>Student Address<span style="color:red">*</span></label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" id="stu_para8" name="stu_para8">
+                                <input type="text" class="form-control" placeholder="Enter Student's Address" id="stu_para8" name="stu_para8">
+                            </div>
+							<div class="form-group">
+                                <label>Student City</label>
+                                <input type="text" class="form-control" placeholder="Enter the Student's City" id="stu_para9" name="stu_para9">
+                            </div>
+							<div class="form-group">
+                                <label>Distance to Home from Daham Pasala( In km )</label>
+                                <input type="text" class="form-control" placeholder="Enter Distance in kilometers eg: 1,2,3...." id="stu_para10" name="stu_para10">
                             </div>
 							
                             <div class="form-group">
-                                <label>Land Phone Number</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Full Name" id="stu_para6" name="stu_para6" >
+                                <label>Land Phone Number ( In case of emergengy )</label>
+                                <input type="text"  class="form-control" placeholder="Enter Land Phone Number eg:0112345678" id="stu_para6" name="stu_para6" >
                             </div>
                             <div class="form-group">
-                                <label>Mobile Phone Number</label>
-                                <input type="text" class="form-control" placeholder="Enter Email" id="stu_para7" name="stu_para7">
+                                <label>Mobile Phone Number ( In case of emergengy )</label>
+                                <input type="text" class="form-control" placeholder="Enter Mobile Phone Number eg:0741234567" id="stu_para7" name="stu_para7">
                             </div>
                             
-                            <div class="form-group">
-                                <label>Student City</label>
-                                <input type="text" class="form-control" placeholder="Enter User Password" id="stu_para9" name="stu_para9">
-                            </div>
-                            <div class="form-group">
-                                <label>Distance to Home</label>
-                                <input type="text" class="form-control" placeholder="Re Type User Password" id="stu_para10" name="stu_para10">
-                            </div>
+                            
+                            
                             <div class="form-group">
                                 <label>School</label>
                                 <select class="form-control" id="stu_para11" name="stu_para11">
@@ -273,14 +247,14 @@
                                 </select>
                             </div>
 							<div class="form-group">
-                                <label>School attendence year</label>
-                                <input type="text" class="form-control" placeholder="Re Type User Password" id="stu_para14" name="stu_para14">
+                                <label>School Admission Year</label>
+                                <input type="text" class="form-control" placeholder="Enter the year the student was admitted to his/her school" id="stu_para14" name="stu_para14">
                             </div>
 
                             <!-- checkbox -->
                             <div class="form-group">
-                                <label> Diseses</label>
-                                <div id="stu_para12">
+                                <label> Diseases</label>
+                                <div id="stu_para12" >
 
                                 </div>
                             </div>
@@ -294,69 +268,70 @@
 
 
                             <div class="box-header with-border" align="center">
-                                <h3 class="box-title">Mothers Details</h3>
+                                <h3 class="box-title">Mother's Details</h3>
                             </div>
 
 
 
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Mother Full Name </label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="mot_para1" name="mot_para1">
+                                <label>Mother's Name </label>
+                                <input type="text"  class="form-control" placeholder="Enter Mother's Name" id="mot_para1" name="mot_para1">
+                            </div>
+							<div class="form-group">
+                                <label>Mother's NIC Number </label>
+                                <input type="text" class="form-control" placeholder="Enter Mother's NIC Number" id="mot_para5" name="mot_para5">
                             </div>
                             <div class="form-group">
-                                <label>Mothers Phone Number</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Full Name" id="mot_para2" name="mot_para2" >
+                                <label>Mother's Phone Number</label>
+                                <input type="text"  class="form-control" placeholder="Enter Mother's Phone Number" id="mot_para2" name="mot_para2" >
                             </div>
                             <div class="form-group">
-                                <label>Mothers Adress</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="mot_para3" name="mot_para3">
+                                <label>Mother's Address</label>
+                                <input type="text"  class="form-control" placeholder="Enter Mother's Address" id="mot_para3" name="mot_para3">
                             </div>
                             <div class="form-group">
-                                <label>Mothers email</label>
-                                <input type="email"  class="form-control" placeholder="Enter User Name" id="mot_para4" name="mot_para4">
+                                <label>Mother's Email</label>
+                                <input type="email"  class="form-control" placeholder="Enter Mother's Email" id="mot_para4" name="mot_para4">
                             </div>
+                            
                             <div class="form-group">
-                                <label>Mothers NIC number </label>
-                                <input type="text" class="form-control" placeholder="Re Type User Password" id="mot_para5" name="mot_para5">
-                            </div>
-                            <div class="form-group">
-                                <label>Mothers Occupation</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="mot_para6" name="mot_para6">
+                                <label>Mother's Occupation</label>
+                                <input type="text"  class="form-control" placeholder="Enter Mother's Occupation" id="mot_para6" name="mot_para6">
                             </div>
 
 
                             <div class="form-group">
-                                <label>Mothers Occupation Type</label>
+                                <label>Mother's Occupation Type</label>
                                 <select class="form-control" id="mot_para7" name="mot_para7">
 
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Mothers Office address</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Full Name" id="mot_para8" name="mot_para8" >
+                                <label>Mother's Office Address</label>
+                                <input type="text"  class="form-control" placeholder="Enter Mother's Office Address" id="mot_para8" name="mot_para8" >
                             </div>
                             <div class="form-group">
-                                <label>Mothers Office phone</label>
-                                <input type="text" class="form-control" placeholder="Enter Email" id="mot_para9" name="mot_para9">
+                                <label>Mother's Office Phone Number</label>
+                                <input type="text" class="form-control" placeholder="Enter Mother's Office Phone Number" id="mot_para9" name="mot_para9">
                             </div>
                             <div class="form-group">
-                                <label>Mothers Student Admission Number</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" id="mot_para10" name="mot_para10">
+                                <label>Mother's Student Admission Number (If she is a past pupil)</label>
+                                <input type="text" class="form-control" placeholder="Enter Mother's Student Admission Number" id="mot_para10" name="mot_para10">
                             </div>
                             <div class="form-group">
-                                <label>Mothers OG Number</label>
-                                <input type="text" class="form-control" placeholder="Enter User Password" id="mot_para11" name="mot_para11">
+                                <label>Mother's Past Pupil Number (If she is a past pupil)</label>
+                                <input type="text" class="form-control" placeholder="Enter Mother's Past Pupil Number" id="mot_para11" name="mot_para11">
                             </div>
 
                             <div class="form-group">
-                                <label>Mothers Teachers Number</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" id="mot_para12" name="mot_para12">
+                                <label>Mother's Teacher Registration Number (If she is a teacher at Daham Pasala)</label>
+                                <input type="text" class="form-control" placeholder="Enter Teacher Registration Number" id="mot_para12" name="mot_para12">
                             </div>
                             <div class="form-group">
-                                <label>Mothers Interactions with DP</label>
-                                <input type="text" class="form-control" placeholder="Enter User Password" id="mot_para13" name="mot_para13">
+                                <label>Mother's Interactions with Dharmayathanaya</label>
+                                <input type="text" class="form-control" placeholder="Enter Mother's Interactions with Dharmayathanaya eg: Member of Shasana Sewaka Samithiya" id="mot_para13" name="mot_para13">
                             </div>
 
 
@@ -373,67 +348,68 @@
 
 
                             <div class="box-header with-border" align="center">
-                                <h3 class="box-title">Fathers Details</h3>
+                                <h3 class="box-title">Father's Details</h3>
                             </div>
 
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Fathers Full Name </label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="far_para1" name="far_para1">
+                                <label>Father's Name </label>
+                                <input type="text"  class="form-control" placeholder="Enter Father's Name" id="far_para1" name="far_para1">
+                            </div>
+							<div class="form-group">
+                                <label>Father's NIC number </label>
+                                <input type="text" class="form-control" placeholder="Enter Father's NIC number" id="far_para5" name="far_para5">
                             </div>
                             <div class="form-group">
-                                <label>Fathers Phone Number</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Full Name" id="far_para2" name="far_para2" >
+                                <label>Father's Phone Number</label>
+                                <input type="text"  class="form-control" placeholder="Enter Father's Phone Number" id="far_para2" name="far_para2" >
                             </div>
                             <div class="form-group">
-                                <label>Fathers Adress</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="far_para3" name="far_para3">
+                                <label>Father's Address</label>
+                                <input type="text"  class="form-control" placeholder="Enter Father's Address" id="far_para3" name="far_para3">
                             </div>
                             <div class="form-group">
-                                <label>Fathers email</label>
-                                <input type="email"  class="form-control" placeholder="Enter User Name" id="far_para4" name="far_para4">
+                                <label>Father's Email</label>
+                                <input type="email"  class="form-control" placeholder="Enter Father's Email" id="far_para4" name="far_para4">
                             </div>
+                            
                             <div class="form-group">
-                                <label>Fathers NIC number </label>
-                                <input type="text" class="form-control" placeholder="Re Type User Password" id="far_para5" name="far_para5">
-                            </div>
-                            <div class="form-group">
-                                <label>Fathers Occupation</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="far_para6" name="far_para6">
+                                <label>Father's Occupation</label>
+                                <input type="text"  class="form-control" placeholder="Enter Father's Occupation" id="far_para6" name="far_para6">
                             </div>
 
 
                             <div class="form-group">
-                                <label>Fathers Occupation Type </label>
+                                <label>Father's Occupation Type </label>
                                 <select class="form-control" id="far_para7" name="far_para7">
 
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Fathers Office address</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Full Name" id="far_para8" name="far_para8" >
+                                <label>Father's Office Address</label>
+                                <input type="text"  class="form-control" placeholder="Enter Father's Office Address" id="far_para8" name="far_para8" >
                             </div>
                             <div class="form-group">
-                                <label>Fathers Office phone</label>
-                                <input type="text" class="form-control" placeholder="Enter Email" id="far_para9" name="far_para9">
+                                <label>Father's Office Phone Number</label>
+                                <input type="text" class="form-control" placeholder="Enter Father's Office Phone Number" id="far_para9" name="far_para9">
                             </div>
                             <div class="form-group">
-                                <label>Fathers Student Admission Number</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" id="far_para10" name="far_para10">
+                                <label>Father's Student Admission Number ( If he is a Past Pupil )</label>
+                                <input type="text" class="form-control" placeholder="Enter Father's Student Admission Number" id="far_para10" name="far_para10">
                             </div>
                             <div class="form-group">
-                                <label>Fathers OG Number</label>
-                                <input type="text" class="form-control" placeholder="Enter User Password" id="far_para11" name="far_para11">
+                                <label>Father's Past Pupil Number ( If he is a Past Pupil )</label>
+                                <input type="text" class="form-control" placeholder="Enter Father's Past Pupil Number" id="far_para11" name="far_para11">
                             </div>
 
                             <div class="form-group">
-                                <label>Fathers Teachers Number</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" id="far_para12" name="far_para12">
+                                <label>Father's Teacher Registration Number (If he is a teacher at Daham Pasala)</label>
+                                <input type="text" class="form-control" placeholder="Enter Father's Teacher Registration Number" id="far_para12" name="far_para12">
                             </div>
                             <div class="form-group">
-                                <label>Fathers Interactions with DP</label>
-                                <input type="text" class="form-control" placeholder="Enter User Password" id="far_para13" name="far_para13">
+                                <label>Father's Interactions with Daham Pasala </label>
+                                <input type="text" class="form-control" placeholder="Enter Father's Interactions with Dharmayathanaya eg: Member of Shasana Sewaka Samithiya" id="far_para13" name="far_para13">
                             </div>
 
 
@@ -453,67 +429,68 @@
 
 
                             <div class="box-header with-border" align="center">
-                                <h3 class="box-title">Gaurdians Details</h3>
+                                <h3 class="box-title">Guardian's Details</h3>
                             </div>
 
                             <!-- text input -->
                             <div class="form-group">
-                                <label>Gaurdians Full Name</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="gar_para1" name="gar_para1">
+                                <label>Guardian's Name</label>
+                                <input type="text"  class="form-control" placeholder="Enter Guardian's Name" id="gar_para1" name="gar_para1">
+                            </div>
+							<div class="form-group">
+                                <label>Guardian's NIC Number </label>
+                                <input type="text" class="form-control" placeholder="Enter Guardian's NIC Number" id="gar_para5" name="gar_para5">
                             </div>
                             <div class="form-group">
-                                <label>Gaurdians Phone Number</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Full Name" id="gar_para2" name="gar_para2" >
+                                <label>Guardian's Phone Number</label>
+                                <input type="text"  class="form-control" placeholder="Enter Guardian's Phone Number" id="gar_para2" name="gar_para2" >
                             </div>
                             <div class="form-group">
-                                <label>Gaurdians Adress</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="gar_para3" name="gar_para3">
+                                <label>Guardian's Address</label>
+                                <input type="text"  class="form-control" placeholder="Enter Guardian's Address" id="gar_para3" name="gar_para3">
                             </div>
                             <div class="form-group">
-                                <label>Gaurdians email</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="gar_para4" name="gar_para4">
+                                <label>Guardian's Email</label>
+                                <input type="text"  class="form-control" placeholder="Enter Guardian's Email" id="gar_para4" name="gar_para4">
                             </div>
+                            
                             <div class="form-group">
-                                <label>Gaurdians NIC number </label>
-                                <input type="text" class="form-control" placeholder="Re Type User Password" id="gar_para5" name="gar_para5">
-                            </div>
-                            <div class="form-group">
-                                <label>Gaurdians Occupation</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Name" id="gar_para6" name="gar_para6">
+                                <label>Guardian's Occupation</label>
+                                <input type="text"  class="form-control" placeholder="Enter Guardian's Occupation" id="gar_para6" name="gar_para6">
                             </div>
 
 
                             <div class="form-group" >
-                                <label>Gaurdians Occupation Type </label>
+                                <label>Guardian's Occupation Type </label>
                                 <select class="form-control" id="gar_para7" name="gar_para7">
 
                                 </select>
                             </div>
 
                             <div class="form-group">
-                                <label>Gaurdians Office address</label>
-                                <input type="text"  class="form-control" placeholder="Enter User Full Name" id="gar_para8" name="gar_para8" >
+                                <label>Guardian's Office Address</label>
+                                <input type="text"  class="form-control" placeholder="Enter Guardian's Office Address" id="gar_para8" name="gar_para8" >
                             </div>
                             <div class="form-group">
-                                <label>Gaurdians Office phone</label>
-                                <input type="text" class="form-control" placeholder="Enter Email" id="gar_para9" name="gar_para9">
+                                <label>Guardian's Office Phone Number</label>
+                                <input type="text" class="form-control" placeholder="Enter Guardian's Office Phone Number" id="gar_para9" name="gar_para9">
                             </div>
                             <div class="form-group">
-                                <label>Gaurdians Student Admission Number</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" id="gar_para10" name="gar_para10">
+                                <label>Guardian's Student Admission Number (If he/she is a Past Pupil )</label>
+                                <input type="text" class="form-control" placeholder="Enter Guardian's Student Admission Number" id="gar_para10" name="gar_para10">
                             </div>
                             <div class="form-group">
-                                <label>Gaurdians OG Number</label>
-                                <input type="text" class="form-control" placeholder="Enter User Password" id="gar_para11" name="gar_para11">
+                                <label>Guardian's Past Pupil Number</label>
+                                <input type="text" class="form-control" placeholder="Enter Guardian's Past Pupil Number" id="gar_para11" name="gar_para11">
                             </div>
 
                             <div class="form-group">
-                                <label>Gaurdians Teachers Number</label>
-                                <input type="text" class="form-control" placeholder="Enter Phone Number" id="gar_para12" name="gar_para12">
+                                <label>Guardian's Teacher Registration Number ( If he/she is a teacher at Daham Pasala )</label>
+                                <input type="text" class="form-control" placeholder="Enter Guardian's Teacher Registration Number" id="gar_para12" name="gar_para12">
                             </div>
                             <div class="form-group">
-                                <label>Gaurdians Interactions with DP</label>
-                                <input type="text" class="form-control" placeholder="Enter User Password" id="gar_para13" name="gar_para13">
+                                <label>Guardian's Interactions with Daham Pasala</label>
+                                <input type="text" class="form-control" placeholder="Enter Guardian's Interactions with Dharmayathanaya eg: Member of Shasana Sewaka Samithiya" id="gar_para13" name="gar_para13">
                             </div>
 
 

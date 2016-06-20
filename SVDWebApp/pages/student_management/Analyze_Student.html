@@ -1,0 +1,1348 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>SVD | MIS </title>
+
+        <link rel="shortcut icon" href="../../resource/images/flag.png">
+        <!-- Tell the browser to be responsive to screen width -->
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+
+
+
+
+
+        <!-- Bootstrap 3.3.6 -->
+        <link rel="stylesheet" href="../../bootstrap/css/bootstrap.min.css">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="../../resource/css/font-awesome-4.5.0/css/font-awesome.min.css">
+        <!-- Ionicons -->
+        <link rel="stylesheet" href="../../resource/css/ionicons.min.css">
+        <!-- Theme style -->
+        <link rel="stylesheet" href="../../dist/css/AdminLTE.min.css">
+        <!-- SVD Skins. Choose a skin from the css/skins
+             folder instead of downloading all of them to reduce the load. -->
+        <link rel="stylesheet" href="../../dist/css/skins/_all-skins.min.css">
+        <!-- SVD main css -->
+        <link rel="stylesheet" href="../../resource/css/svd-mis-main.css">
+
+        <!-- jQuery 2.2.0 -->
+        <script src="../../plugins/jQuery/jQuery-2.2.0.min.js"></script> 
+
+        <!-- Sweet Alerts -->
+        <script src="../../resource/js/lib/sweetalert.min.js"></script> 
+        <link rel="stylesheet" type="text/css" href="../../resource/js/lib/sweetalert.css">
+
+        <!-- Validation JS -->
+        <script src="../../resource/js/lib/jquery.validate.min.js"></script> 
+        <script src="../../resource/js/lib/additional-methods.min.js"></script> 
+		
+		<!-- Chart Legend -->
+		<script src="../../resource/js/lib/legend.js"></script> 
+		
+		<!-- DataTables -->
+		<link rel="stylesheet" href="../../plugins/datatables/dataTables.bootstrap.css">
+
+
+        <style>
+            .error{
+                color: red;
+            }
+
+			div.hidden
+			{
+			   display: none
+			}
+			.legend {
+				width: 10em;
+				border: 1px solid black;
+			}
+
+			.legend .title {
+				display: block;
+				margin-bottom: 0.5em;
+				line-height: 1.2em;
+				padding: 0 0.3em;
+			}
+
+			.legend .color-sample {
+				display: block;
+				float: left;
+				width: 1em;
+				height: 1em;
+				border: 2px solid; /* Comment out if you don't want to show the fillColor */
+				border-radius: 0.5em; /* Comment out if you prefer squarish samples */
+				margin-right: 0.5em;
+			}
+        </style>
+
+        <script>
+            $(function () {
+
+                var userType = localStorage.getItem("menueName");
+                
+                $("#leftMenueOfSVD").load(userType);
+                $("#mainFooterOfSVD").load("../common/footer.html");
+                $("#adminNotificationComponent").load("../common/AdminNotification.html");
+                $("#systemNotificationCompnent").load("../common/SystemNotification.html");
+                $("#userTaskComponent").load("../common/UserTaskNotification.html");
+                $("#userProfileMiniComponent").load("../common/UserProfileMini.html");
+            });
+        </script>
+
+        <!-- this page controlling JS -->
+        <script src="../../resource/js/student_management/Analyze_Student.js"></script>
+
+        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+
+
+
+    <body class="hold-transition skin-blue sidebar-mini">
+
+
+
+
+        <div class="wrapper">
+
+
+            <header class="main-header">
+                <!-- Logo -->
+                <a href="../welcome/welcome.html" class="logo">
+                    <!-- mini logo for sidebar mini 50x50 pixels -->
+                    <span class="logo-mini"><b>SRM</b></span>
+                    <!-- logo for regular state and mobile devices -->
+                    <span class="logo-lg "><b>SVD | RND | MIS</b></span>
+                </a>
+                <!-- Header Navbar: style can be found in header.less -->
+                <nav class="navbar navbar-static-top">
+                    <!-- Sidebar toggle button-->
+                    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="navbar-custom-menu">
+                        <ul class="nav navbar-nav">
+
+                            <!-- Messages: style can be found in dropdown.less-->
+                            <li class="dropdown messages-menu" id="adminNotificationComponent">
+                                <!-- It is load from another file.-->
+                            </li>
+
+                            <!-- Notifications: style can be found in dropdown.less -->
+                            <li class="dropdown notifications-menu" id="systemNotificationCompnent">
+                                <!-- It is load from another file.-->
+                            </li>
+
+                            <!-- Tasks: style can be found in dropdown.less -->
+                            <li class="dropdown tasks-menu" id="userTaskComponent">
+                                <!-- It is load from another file.-->
+                            </li>
+
+                            <!-- User Account: style can be found in dropdown.less -->
+                            <li class="dropdown user user-menu" id="userProfileMiniComponent">
+
+                            </li>
+
+
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+
+            <!-- Left side column. contains the logo and sidebar -->
+            <aside class="main-sidebar" id="leftMenueOfSVD"></aside>
+
+
+
+
+
+
+
+
+
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper" style="padding:1%">
+                <!-- general form elements disabled -->
+                <div class="box box-warning">
+                    <div class="box-header with-border" align="center">
+                        <h3 class="box-title">Search Student</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <form role="form" id="studentAnalyser">
+
+							<!-- radio -->
+                            <div class="form-group">
+                                <label>Search By <span style="color:red">*</span></label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="select_wise" id="whole" value="whole" checked>
+                                        Whole Sunday School 
+                                    </label>
+									<label></label>
+                                    <label>
+                                        <input type="radio" name="select_wise" id="zone_wise" value="zone_wise">
+                                        Zone Wise
+                                    </label>
+									<label></label>
+									<label>
+                                        <input type="radio" name="select_wise" id="gread_wise" value="gread_wise">
+                                        Gread Wise
+                                    </label>
+									<label></label>
+									<label>
+                                        <input type="radio" name="select_wise" id="class_wise" value="class_wise">
+                                        Class Wise
+                                    </label>
+                                </div>
+                            </div>
+                            <!-- text input -->
+							<div class="form-group">
+                                <label>Years should taken to analyse <span style="color:red">*</span></label>
+                                <input type="text"  class="form-control" placeholder="Enter the Year of Admission" id="years" name="years" >
+                            </div>
+                            <div class="form-group hidden" id="zone" name="zone">
+                                <label>Select Zone</label>
+                                <select class="form-control" id="zone1" name="zone1">
+									<option value="p">ප්‍රථමික කලාපය</option>
+									<option value="k">කනිෂ්ඨ කලාපය</option>
+									<option value="jp">ජ්‍යෙෂ්ඨ පිරිමි කලාපය</option>
+									<option value="jg">ජය්ෂ්ඨ ගැහැණු කලාපය</option>
+									<option value="u">උත්තර අධ්‍යන කලාපය</option>									
+                                </select>
+                            </div>
+							
+							<div class="form-group hidden" id="gread" name="gread" >
+                                <label>Select Gread</label>
+                                <select class="form-control" id="gread1" name="gread1">
+									<option value="2">Gread 2</option>
+									<option value="3">Gread 3</option>
+									<option value="4">Gread 4</option>
+									<option value="5">Gread 5</option>
+									<option value="6">Gread 6</option>	
+									<option value="7">Gread 7</option>
+									<option value="8">Gread 8</option>
+									<option value="9">Gread 9</option>
+									<option value="10">Gread 10</option>
+									<option value="11">Gread 11</option>	
+									<option value="12">Gread 12</option>
+									<option value="13">Gread 13</option>
+									<option value="14">Gread 14</option>								
+                                </select>
+                            </div>
+							
+							<div class="form-group hidden"  id="class" name="class">
+                                <label>Select Gread</label>
+                                <select class="form-control" id="class1" name="class1">
+									<option value="A">A</option>
+									<option value="B">B</option>
+									<option value="C">C</option>
+									<option value="D">D</option>
+									<option value="E">E</option>	
+									<option value="F">F</option>
+									<option value="G">G</option>
+									<option value="H">H</option>
+									<option value="I">I</option>
+									<option value="J">J</option>	
+									<option value="K">K</option>
+									<option value="L">L</option>
+									<option value="M">M</option>	
+									<option value="N">N</option>	
+                                </select>
+                            </div>
+                            <div class="box-footer">
+                                <button type="submit" class="btn btn-primary" >Submit</button>
+                            </div>
+
+                        </form>
+                    </div>
+					 <!-- /.box-body -->
+				 </div>
+                <!-- /.box -->
+					
+					<div id="analyse_report" class="hidden">
+					
+					<!-- Small boxes (Stat box) -->
+					<div class="row">
+						<div class="col-lg-4 col-xs-6">
+						  <!-- small box -->
+						  <div class="small-box bg-aqua">
+							<div class="inner">
+							  <h3 id = "att1">53<sup style="font-size: 20px">%</sup></h3>
+
+							  <p>Sunday Avarege Attendence </p>
+							</div>
+							<div class="icon">
+							  <i class="fa fa-tachometer"></i>
+							</div>
+							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+						  </div>
+						</div>
+						<!-- ./col -->
+						<div class="col-lg-4 col-xs-6">
+						  <!-- small box -->
+						  <div class="small-box bg-yellow">
+							<div class="inner">
+							  <h3 id = "att2">44<sup style="font-size: 20px">%</sup></h3>
+
+							  <p>Sunday Max Attendence</p>
+							</div>
+							<div class="icon">
+							  <i class="fa fa-bar-chart"></i>
+							</div>
+							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+						  </div>
+						</div>
+						<!-- ./col -->
+						<div class="col-lg-4 col-xs-6">
+						  <!-- small box -->
+						  <div class="small-box bg-red">
+							<div class="inner">
+							  <h3 id = "att3">65<sup style="font-size: 20px">%</sup></h3>
+
+							  <p>Sunday Min Attendence</p>
+							</div>
+							<div class="icon">
+							  <i class="fa fa-exclamation"></i>
+							</div>
+							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+						  </div>
+						</div>
+						<!-- ./col -->
+					</div>
+					<!-- /.row -->
+					<div class="row">
+						<div class="col-lg-4 col-xs-6">
+						  <!-- small box -->
+						  <div class="small-box bg-green">
+							<div class="inner">
+							  <h3 id = "att4">53<sup style="font-size: 20px">%</sup></h3>
+
+							  <p>Poya Avarege Attendence </p>
+							</div>
+							<div class="icon">
+							  <i class="fa fa-tachometer"></i>
+							</div>
+							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+						  </div>
+						</div>
+						<!-- ./col -->
+						<div class="col-lg-4 col-xs-6">
+						  <!-- small box -->
+						  <div class="small-box bg-purple">
+							<div class="inner">
+							  <h3 id = "att5">44<sup style="font-size: 20px">%</sup></h3>
+
+							  <p>Poya Max Attendence</p>
+							</div>
+							<div class="icon">
+							  <i class="fa fa-bar-chart"></i>
+							</div>
+							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+						  </div>
+						</div>
+						<!-- ./col -->
+						<div class="col-lg-4 col-xs-6">
+						  <!-- small box -->
+						  <div class="small-box bg-orange">
+							<div class="inner">
+							  <h3 id = "att6">65<sup style="font-size: 20px">%</sup></h3>
+
+							  <p>Poya Min Attendence</p>
+							</div>
+							<div class="icon">
+							  <i class="fa fa-exclamation"></i>
+							</div>
+							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+						  </div>
+						</div>
+						<!-- ./col -->
+					</div>
+					<!-- /.row -->
+					
+					
+					<!-- BAR CHART -->
+					<div class="box box-success">
+						<div class="box-header with-border">
+						  <h3 class="box-title">Guna Chart</h3>
+
+						  <div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+						  </div>
+						</div>
+						<div class="box-body">
+						  <div class="chart">
+							<canvas id="guna_chart" style="height:230px"></canvas>
+						  </div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+					
+					
+					<!-- DONUT CHART -->
+					<div class="row">
+						<div class="col-lg-6 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">after_school</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="after_school" style="height:250px"></canvas>
+									<div id="after_schoolLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+						</div>
+						<div class="col-lg-6 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">reading_pattern</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="reading_pattern" style="height:250px"></canvas>
+									<div id="readingLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+					</div>
+					<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">tv_programmes</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="tv_programmes" style="height:250px"></canvas>
+									<div id="tv_programmesLegend"></div>
+								</div>
+								<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+							
+					<!-- BAR CHART -->
+					<div class="box box-success">
+						<div class="box-header with-border">
+						  <h3 class="box-title">Responsibilities Chart</h3>
+
+						  <div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+						  </div>
+						</div>
+						<div class="box-body">
+						  <div class="chart">
+							<canvas id="responsibilities_chart" style="height:230px"></canvas>
+							<div id="responsibilitiesLegend"></div>
+						  </div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+					
+					<!-- BAR CHART -->
+					<div class="box box-success">
+						<div class="box-header with-border">
+						  <h3 class="box-title">HB Chart</h3>
+
+						  <div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+						  </div>
+						</div>
+						<div class="box-body">
+						  <div class="chart">
+							<canvas id="home_behavior_chart" style="height:230px"></canvas>
+							<div id="home_behaviorLegend"></div>
+						  </div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+					
+					<!-- BAR CHART -->
+					<div class="box box-success">
+						<div class="box-header with-border">
+						  <h3 class="box-title">Talents Chart</h3>
+
+						  <div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+						  </div>
+						</div>
+						<div class="box-body">
+						  <div class="chart">
+							<canvas id="talents_chart" style="height:230px"></canvas>
+							<div id="talentsLegend"></div>
+						  </div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+					
+					<!-- facilities CHART -->
+					<div class="box box-success">
+						<div class="box-header with-border">
+						  <h3 class="box-title">facilities Chart</h3>
+
+						  <div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+						  </div>
+						</div>
+						<div class="box-body">
+						  <div class="chart">
+							<canvas id="facilities_chart" style="height:230px"></canvas>
+							<div id="facilitiesLegend"></div>
+						  </div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+					
+					
+					<!-- Parent Live CHART -->
+					<div class="row">
+						<div class="col-lg-6 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">Father_live</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="father_live" style="height:250px"></canvas>
+									<div id="father_liveLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+						<div class="col-lg-6 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">Mother Live</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="mother_live" style="height:250px"></canvas>
+									<div id="mother_liveLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+					</div>
+					
+					
+					<!-- Parent ill CHART -->
+					<div class="row">
+						<div class="col-lg-6 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">Father_ill</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="father_ill" style="height:250px"></canvas>
+									<div id="father_illLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+						<div class="col-lg-6 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">Mother ill</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="mother_ill" style="height:250px"></canvas>
+									<div id="mother_illLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+					</div>
+					
+					<!-- Lives with CHART -->
+					<div class="row">
+						<div class="col-lg-4 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">Lives with</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="lives_with" style="height:250px"></canvas>
+									<div id="lives_withLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+						<div class="col-lg-4 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">comes with</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="comes_with" style="height:250px"></canvas>
+									<div id="comes_withLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+						<div class="col-lg-4 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">comes from</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="comes_from" style="height:250px"></canvas>
+									<div id="comes_fromLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+					</div>
+					
+					<!-- Parent Sill CHART -->
+					<div class="row">
+						<div class="col-lg-6 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">Father_sill</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="father_sill" style="height:250px"></canvas>
+									<div id="father_sillLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+						<div class="col-lg-6 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">Mother ill</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="mother_sill" style="height:250px"></canvas>
+									<div id="mother_sillLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+					</div>
+					
+					<!-- Parent drink CHART -->
+					<div class="row">
+						<div class="col-lg-6 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">Father_drink</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="father_drink" style="height:250px"></canvas>
+									<div id="father_drinkLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+						<div class="col-lg-6 col-xs-6">
+							<div class="box box-danger">
+								<div class="box-header with-border">
+								  <h3 class="box-title">Mother ill</h3>
+
+								  <div class="box-tools pull-right">
+									<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+									</button>
+									<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+								  </div>
+								</div>
+								<div class="box-body">
+									<canvas id="mother_drink" style="height:250px"></canvas>
+									<div id="mother_drinkLegend"></div>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+							
+						</div>
+					</div>
+					
+					
+					<!-- BAR CHART -->
+					<div class="box box-success">
+						<div class="box-header with-border">
+						  <h3 class="box-title">Reccomendation Chart</h3>
+
+						  <div class="box-tools pull-right">
+							<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+							</button>
+							<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+						  </div>
+						</div>
+						<div class="box-body">
+						  <div class="chart">
+							<canvas id="reccomendation_chart" style="height:230px"></canvas>
+							<div id="reccomendationLegend"></div>
+						  </div>
+						</div>
+						<!-- /.box-body -->
+					</div>
+					<!-- /.box -->
+					
+					<!--reccomendation Table -->
+					<div>
+						<div class="box box-warning">
+							<div class="box-header with-border" align="center">
+								<h3 class="box-title">Suggested Student Names</h3>
+								 <div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+							  <table id="studentReccomendationTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+									  <th>rec_id</th>
+									  <th>stu_admission_number</th>
+									  <th>stu_full_name</th>
+									  <th>rec_year</th>
+									  <th>rec_type_name</th>
+									  <th>rec_topic</th>
+									  <th>rec_discription</th>
+									</tr>
+								</thead>
+								<tbody id ="studentReccomendationTableBody">
+									
+								</tbody>
+								<tfoot>
+									<tr>
+									  <th>rec_id</th>
+									  <th>stu_admission_number</th>
+									  <th>stu_full_name</th>
+									  <th>rec_year</th>
+									  <th>rec_type_name</th>
+									  <th>rec_topic</th>
+									  <th>rec_discription</th>
+									</tr>
+								</tfoot>
+							  </table>
+							</div>
+							<!-- /.box-body -->
+						  </div>
+						  <!-- /.box -->
+					</div>
+					
+					
+					<!--desies_count Table -->
+					<div>
+						<div class="box box-warning">
+							<div class="box-header with-border" align="center">
+								<h3 class="box-title">desies_count</h3>
+								 <div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+							  <table id="desiescountTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+									  <th>dis_name</th>
+									  <th>dis_explanation</th>
+									  <th>number_of_student_falls_ill</th>
+									</tr>
+								</thead>
+								<tbody id ="desiescountTableBody">
+									
+								</tbody>
+								<tfoot>
+									<tr>
+									  <th>dis_name</th>
+									  <th>dis_explanation</th>
+									  <th>number_of_student_falls_ill</th>
+									</tr>
+								</tfoot>
+							  </table>
+							</div>
+							<!-- /.box-body -->
+						  </div>
+						  <!-- /.box -->
+					</div>
+					
+					<!--desies Table -->
+					<div>
+						<div class="box box-warning">
+							<div class="box-header with-border" align="center">
+								<h3 class="box-title">desies</h3>
+								 <div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+							  <table id="desiesTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+									  <th>stu_admission_number</th>
+									  <th>stu_full_name</th>
+									  <th>dis_name</th>
+									  <th>dis_explanation</th>
+									  <th>dis_found_year</th>
+									</tr>
+								</thead>
+								<tbody id ="desiesTableBody">
+									
+								</tbody>
+								<tfoot>
+									<tr>
+									  <th>stu_admission_number</th>
+									  <th>stu_full_name</th>
+									  <th>dis_name</th>
+									  <th>dis_explanation</th>
+									  <th>dis_found_year</th>
+									</tr>
+								</tfoot>
+							  </table>
+							</div>
+							<!-- /.box-body -->
+						  </div>
+						  <!-- /.box -->
+					</div>
+					
+					
+					<!--schools Table -->
+					<div>
+						<div class="box box-warning">
+							<div class="box-header with-border" align="center">
+								<h3 class="box-title">schools</h3>
+								 <div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+							  <table id="schoolsTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+									  <th>sch_name</th>
+									  <th>sch_situated_in</th>
+									  <th>number_of_student_attend</th>
+									</tr>
+								</thead>
+								<tbody id ="schoolsTableBody">
+									
+								</tbody>
+								<tfoot>
+									<tr>
+									  <th>sch_name</th>
+									  <th>sch_situated_in</th>
+									  <th>number_of_student_attend</th>
+									</tr>
+								</tfoot>
+							  </table>
+							</div>
+							<!-- /.box-body -->
+						  </div>
+						  <!-- /.box -->
+					</div>
+					
+					<!--city Table -->
+					<div>
+						<div class="box box-warning">
+							<div class="box-header with-border" align="center">
+								<h3 class="box-title">city</h3>
+								 <div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+							  <table id="cityTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+									  <th>stu_city</th>
+									  <th>number_of_student_livesin</th>
+									</tr>
+								</thead>
+								<tbody id ="cityTableBody">
+									
+								</tbody>
+								<tfoot>
+									<tr>
+									  <th>stu_city</th>
+									  <th>number_of_student_livesin</th>
+									</tr>
+								</tfoot>
+							  </table>
+							</div>
+							<!-- /.box-body -->
+						  </div>
+						  <!-- /.box -->
+					</div>
+					
+					<!-- Small boxes (Stat box) -->
+					<div class="row">
+						<div class="col-lg-4 col-xs-6">
+						  <!-- small box -->
+						  <div class="small-box bg-aqua">
+							<div class="inner">
+							  <h3 id = "shd1">53<sup style="font-size: 20px">%</sup></h3>
+
+							  <p>Avarage Distence</p>
+							</div>
+							<div class="icon">
+							  <i class="fa fa-tachometer"></i>
+							</div>
+							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+						  </div>
+						</div>
+						<!-- ./col -->
+						<div class="col-lg-4 col-xs-6">
+						  <!-- small box -->
+						  <div class="small-box bg-yellow">
+							<div class="inner">
+							  <h3 id = "shd2">44<sup style="font-size: 20px">%</sup></h3>
+
+							  <p>Max Distence</p>
+							</div>
+							<div class="icon">
+							  <i class="fa fa-bar-chart"></i>
+							</div>
+							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+						  </div>
+						</div>
+						<!-- ./col -->
+						<div class="col-lg-4 col-xs-6">
+						  <!-- small box -->
+						  <div class="small-box bg-red">
+							<div class="inner">
+							  <h3 id = "shd3">65<sup style="font-size: 20px">%</sup></h3>
+
+							  <p>Min Distence</p>
+							</div>
+							<div class="icon">
+							  <i class="fa fa-exclamation"></i>
+							</div>
+							<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+						  </div>
+						</div>
+						<!-- ./col -->
+					</div>
+					<!-- /.row -->
+					
+					<!--far_occ Table -->
+					<div>
+						<div class="box box-warning">
+							<div class="box-header with-border" align="center">
+								<h3 class="box-title">Far Occ</h3>
+								 <div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+							  <table id="far_occTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+									  <th>occ_type_name_far</th>
+									  <th>occ_type_description_far</th>
+									  <th>number_of_workers_far</th>
+									</tr>
+								</thead>
+								<tbody id ="far_occTableBody">
+									
+								</tbody>
+								<tfoot>
+									<tr>
+									  <th>occ_type_name_far</th>
+									  <th>occ_type_description_far</th>
+									  <th>number_of_workers_far</th>
+									</tr>
+								</tfoot>
+							  </table>
+							</div>
+							<!-- /.box-body -->
+						  </div>
+						  <!-- /.box -->
+					</div>
+					
+					
+					<!--mot_occ Table -->
+					<div>
+						<div class="box box-warning">
+							<div class="box-header with-border" align="center">
+								<h3 class="box-title">MOt OCC</h3>
+								 <div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+							  <table id="mot_occTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+									  <th>occ_type_name_far</th>
+									  <th>occ_type_description_far</th>
+									  <th>number_of_workers_far</th>
+									</tr>
+								</thead>
+								<tbody id ="mot_occTableBody">
+									
+								</tbody>
+								<tfoot>
+									<tr>
+									  <th>occ_type_name_far</th>
+									  <th>occ_type_description_far</th>
+									  <th>number_of_workers_far</th>
+									</tr>
+								</tfoot>
+							  </table>
+							</div>
+							<!-- /.box-body -->
+						  </div>
+						  <!-- /.box -->
+					</div>
+					
+					
+					<!--gur_occ Table -->
+					<div>
+						<div class="box box-warning">
+							<div class="box-header with-border" align="center">
+								<h3 class="box-title">Gur Occ</h3>
+								 <div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+							  <table id="gur_occTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+									  <th>occ_type_name_far</th>
+									  <th>occ_type_description_far</th>
+									  <th>number_of_workers_far</th>
+									</tr>
+								</thead>
+								<tbody id ="gur_occTableBody">
+									
+								</tbody>
+								<tfoot>
+									<tr>
+									  <th>occ_type_name_far</th>
+									  <th>occ_type_description_far</th>
+									  <th>number_of_workers_far</th>
+									</tr>
+								</tfoot>
+							  </table>
+							</div>
+							<!-- /.box-body -->
+						  </div>
+						  <!-- /.box -->
+					</div>
+					
+					
+					<!--no_far Table -->
+					<div>
+						<div class="box box-warning">
+							<div class="box-header with-border" align="center">
+								<h3 class="box-title">no_far </h3>
+								 <div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+							  <table id="no_farTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+									  <th>stu_admission_number</th>
+									  <th>stu_full_name</th>
+									  <th>stu_gender</th>
+									  <th>stu_date_of_birth</th>
+									  <th>stu_address</th>
+									</tr>
+								</thead>
+								<tbody id ="no_farTableBody">
+									
+								</tbody>
+								<tfoot>
+									<tr>
+									  <th>stu_admission_number</th>
+									  <th>stu_full_name</th>
+									  <th>stu_gender</th>
+									  <th>stu_date_of_birth</th>
+									  <th>stu_address</th>
+									</tr>
+								</tfoot>
+							  </table>
+							</div>
+							<!-- /.box-body -->
+						  </div>
+						  <!-- /.box -->
+					</div>	
+					
+					
+					<!--no_mot Table -->
+					<div>
+						<div class="box box-warning">
+							<div class="box-header with-border" align="center">
+								<h3 class="box-title">no_mot </h3>
+								 <div class="box-tools pull-right">
+								<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+								</button>
+								<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+							  </div>
+							</div>
+							<!-- /.box-header -->
+							<div class="box-body">
+							  <table id="no_motTable" class="table table-bordered table-striped">
+								<thead>
+									<tr>
+									  <th>stu_admission_number</th>
+									  <th>stu_full_name</th>
+									  <th>stu_gender</th>
+									  <th>stu_date_of_birth</th>
+									  <th>stu_address</th>
+									</tr>
+								</thead>
+								<tbody id ="no_motTableBody">
+									
+								</tbody>
+								<tfoot>
+									<tr>
+									  <th>stu_admission_number</th>
+									  <th>stu_full_name</th>
+									  <th>stu_gender</th>
+									  <th>stu_date_of_birth</th>
+									  <th>stu_address</th>
+									</tr>
+								</tfoot>
+							  </table>
+							</div>
+							<!-- /.box-body -->
+						  </div>
+						  <!-- /.box -->
+					</div>	
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+                   
+                </div>
+            </div>
+
+        </div>
+        <!-- /.content-wrapper -->
+
+
+
+
+
+
+
+
+        <footer class="main-footer" id = "mainFooterOfSVD"></footer>
+
+
+        <!-- ./wrapper -->
+
+
+        <!-- Bootstrap 3.3.6 -->
+        <script src="../../bootstrap/js/bootstrap.min.js"></script>
+        <!-- FastClick -->
+        <script src="../../plugins/fastclick/fastclick.js"></script>
+        <!-- SVD App -->
+        <script src="../../dist/js/app.min.js"></script>
+        <!-- SVD for demo purposes -->
+        <script src="../../dist/js/demo.js"></script>
+
+
+		<!-- DataTables -->
+		<script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
+		<script src="../../plugins/datatables/dataTables.bootstrap.min.js"></script>
+		<!-- SlimScroll -->
+		<script src="../../plugins/slimScroll/jquery.slimscroll.min.js"></script>
+		
+		<!-- ChartJS 1.0.1 -->
+		<script src="../../plugins/chartjs/Chart.min.js"></script>
+
+
+
+        <!-- InputMask -->
+        <script src="../../plugins/input-mask/jquery.inputmask.js"></script>
+        <script src="../../plugins/input-mask/jquery.inputmask.date.extensions.js"></script>
+        <script src="../../plugins/input-mask/jquery.inputmask.extensions.js"></script>
+
+
+
+    </body>
+</html>

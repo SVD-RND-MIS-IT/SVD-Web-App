@@ -34,38 +34,9 @@
   <script>
             $(function () {
 				
-				var userType = localStorage.getItem("ucat_name");
-				if(userType=="Super User"){
-					$("#leftMenueOfSVD").load("../common/leftMenue.html");
-				}else if(userType=="Admin"){
-					$("#leftMenueOfSVD").load("../common/leftMenue1.html");
-				}else if(userType=="Accountant"){
-					$("#leftMenueOfSVD").load("../common/leftMenue2.html");
-				}else if(userType=="Exam in-charge"){
-					$("#leftMenueOfSVD").load("../common/leftMenue3.html");
-				}else if(userType=="Librarian"){
-					$("#leftMenueOfSVD").load("../common/leftMenue4.html");
-				}else if(userType=="Prefect In-charge"){
-					$("#leftMenueOfSVD").load("../common/leftMenue5.html");
-				}else if(userType=="Thurunusaviya In-charge"){
-					$("#leftMenueOfSVD").load("../common/leftMenue6.html");
-				}else if(userType=="Vidusarana In-charge"){
-					$("#leftMenueOfSVD").load("../common/leftMenue7.html");
-				}else if(userType=="Parent"){
-					$("#leftMenueOfSVD").load("../common/leftMenue8.html");
-				}else if(userType=="Teacher"){
-					$("#leftMenueOfSVD").load("../common/leftMenue9.html");
-				}else if(userType=="Student"){
-					$("#leftMenueOfSVD").load("../common/leftMenue10.html");
-				}else if(userType=="R&D Officer"){
-					$("#leftMenueOfSVD").load("../common/leftMenue11.html");
-				}else{
-					$("#leftMenueOfSVD").load("../common/leftMenue12.html");
-				}
-				
-				
-				
-				
+				var userType = localStorage.getItem("menueName");
+                
+                $("#leftMenueOfSVD").load(userType);
 				$("#mainFooterOfSVD").load("../common/footer.html");
 				$("#adminNotificationComponent").load("../common/AdminNotification.html");
 				$("#systemNotificationCompnent").load("../common/SystemNotification.html");
